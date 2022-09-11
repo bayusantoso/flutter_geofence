@@ -11,11 +11,13 @@ abstract class GeofenceTrigger {
   static final _notificationPlugin = FlutterLocalNotificationsPlugin();
   static final _androidInitSettings =
       AndroidInitializationSettings('@mipmap/ic_launcher');
+  static final _iosInitSettings = IOSInitializationSettings();
   static final _initializationSettings =
-      InitializationSettings(_androidInitSettings, null);
+      InitializationSettings(_androidInitSettings, _iosInitSettings);
   static final _androidNot = AndroidNotificationDetails('garage_door_opener',
       'garage_door_opener', 'Show when garage door is opened from geofencing');
-  static final _platNot = NotificationDetails(_androidNot, null);
+  static final _iosNot = IOSNotificationDetails();
+  static final _platNot = NotificationDetails(_androidNot, _iosNot);
 
   static Future<void> postNotification(
           int id, String title, String body) async =>
@@ -28,7 +30,7 @@ abstract class GeofenceTrigger {
   ], notificationResponsiveness: 0, loiteringDelay: 0);
 
   static bool _isInitialized = false;
-  static StreamSubscription _locationUpdates;
+  static StreamSubscription? _locationUpdates;
 
   static Future<void> _initialize() async {
     if (!_isInitialized) {
