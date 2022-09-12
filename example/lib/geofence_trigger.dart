@@ -30,7 +30,7 @@ abstract class GeofenceTrigger {
   ], notificationResponsiveness: 0, loiteringDelay: 0);
 
   static bool _isInitialized = false;
-  static StreamSubscription? _locationUpdates;
+  static StreamSubscription _locationUpdates;
 
   static Future<void> _initialize() async {
     if (!_isInitialized) {

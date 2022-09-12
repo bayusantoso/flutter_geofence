@@ -24,10 +24,10 @@ class _MyAppState extends State<MyApp> {
   static double latitude = -6.5904005;
   static double longitude = 106.7968131;
   double radius = 150.0;
-  bool? _stopUpdate;
-  Position? position;
+  bool _stopUpdate;
+  Position position;
 
-  static StreamSubscription? _locationUpdates;
+  static StreamSubscription _locationUpdates;
   ReceivePort port = ReceivePort();
   final List<GeofenceEvent> triggers = <GeofenceEvent>[
     GeofenceEvent.enter,

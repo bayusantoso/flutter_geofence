@@ -74,7 +74,7 @@ class GeofenceRegion {
 
   GeofenceRegion(
       this.id, double latitude, double longitude, this.radius, this.triggers,
-      {AndroidGeofencingSettings? androidSettings})
+      {AndroidGeofencingSettings androidSettings})
       : location = Location(latitude, longitude),
         androidSettings = (androidSettings ?? AndroidGeofencingSettings());
 
@@ -103,7 +103,7 @@ class GeofencingManager {
 
   /// Initialize the plugin and request relevant permissions from the user.
   static Future<void> initialize() async {
-    final CallbackHandle? callback =
+    final CallbackHandle callback =
         PluginUtilities.getCallbackHandle(callbackDispatcher);
     await _channel.invokeMethod('GeofencingPlugin.initializeService',
         <dynamic>[callback?.toRawHandle()]);
